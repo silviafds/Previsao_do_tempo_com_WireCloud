@@ -20,10 +20,10 @@ body {
     flex-direction: column;
     width: 600px;
     height: 250px;
-    background-color: #d3e1e8;
+    background-color: #cbd5da;
     border-radius: 2em 2em 2em 2em;
     border: 1px solid #6b9ac5;
-    box-shadow: 2px 2px 4px rgb(107, 154, 197);
+    box-shadow: 2px 2px 4px rgb(3, 3, 3);
 }
 
 .Titulo {
@@ -58,6 +58,10 @@ body {
     border: 0.4px solid #494949;
 }
 
+.buscarLugar:hover {
+     background-color: #d9d9d9;
+}
+
 .botao {
     display: flex;
     flex-direction: column;
@@ -78,5 +82,8 @@ body {
     border-radius: 0.8em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+}
 
+.botaoEntrar:hover {
+    background-color: #3b85c7;
 }

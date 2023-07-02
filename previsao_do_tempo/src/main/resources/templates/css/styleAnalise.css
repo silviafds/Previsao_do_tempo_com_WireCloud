@@ -3,7 +3,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
-    background-color: #6b9ac5;
 }
 
 .fundo {
@@ -18,21 +17,20 @@ body {
 
 .pesquisa {
     display: flex;
-    background-color: #d3e1e8;
     flex-direction: row;
     justify-content: center;
     width: 600px;
     height: 80px;
+    background-color: #cbd5da;
     border-radius: 2em 2em 2em 2em;
     border: 1px solid #6b9ac5;
-    box-shadow: 2px 2px 4px rgb(117, 163, 203);
+    box-shadow: 2px 2px 4px rgb(3, 3, 3);
     margin-bottom: 10px;
 }
 
 .formLogin {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     padding-top: 24px;
 }
 
@@ -42,9 +40,13 @@ body {
     padding: 0.5em 0.5em 0.5em 0.5em;
     text-align: center;
     width: 300px;
-    height: 34px;
+    height: 38px;
     font-size: 16px;
     border: 0.8px solid #a1a1a1;
+}
+
+.buscarLugar:hover {
+    background-color: #d9d9d9;
 }
 
 .botaoEntrar {
@@ -54,20 +56,24 @@ body {
     text-decoration: none;
     cursor: pointer;
     width: 100px;
-    height: 34px;
+    height: 38px;
     border: 0.3px solid #494949;
     border-radius: 6px;
     padding: 0.5em 0.5em 0.5em 0.5em;
 }
 
+.botaoEntrar:hover {
+    background-color: #3b85c7;
+}
+
 .box {
-    background-color: #d3e1e8;
+    background-color: #cbd5da;
     padding-top: 5px;
     width: 600px;
     height: 400px;
     border-radius: 2em 2em 2em 2em;
     border: 1px solid #6b9ac5;
-    box-shadow: 2px 2px 4px rgb(107, 154, 197);
+    box-shadow: 2px 2px 4px rgb(3, 3, 3);
 }
 
 .dadoLugarPais, .dadoLugarTemperatura, dadoLugarOutrastemperaturas,
