@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    background-color: #6b9ac5;
+}
+
+.fundo {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 250px;
+    background-color: #d3e1e8;
+    border-radius: 2em 2em 2em 2em;
+    border: 1px solid #6b9ac5;
+    box-shadow: 2px 2px 4px rgb(107, 154, 197);
+}
+
+.Titulo {
+    padding-top: 0em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formLogin {
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5em;
+}
+
+.buscarLugar {
+    text-align: center;
+    background-color: #d3d6da;
+    border-radius: 0.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    width: 70%;
+    height: 18px;
+    font-size: 16px;
+    border: 0.4px solid #494949;
+}
+
+.botao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1em;
+}
+
+.botaoEntrar {
+    background-color: #6b9ac5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+    border: 0.3px solid #494949;
+    border-radius: 0.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+}
