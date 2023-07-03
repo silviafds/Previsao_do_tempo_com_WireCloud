@@ -24,7 +24,7 @@ public class PrevisaoService {
     }
 
     /*
-     *  Acessa API e retorna list com os dados necessários de previsão do tempo
+     *  Acessa API e retorna os dados necessários de previsão do tempo
      */
     private DadoClimatico acessaAPI(String lugar) {
         String linha;
