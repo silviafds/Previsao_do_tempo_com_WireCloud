@@ -15,7 +15,7 @@ import org.apache.commons.text.WordUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class previsaoService {
+public class PrevisaoService {
 
     public String apiKey = "80e0070b689cbee079cb225a96f68b9a";//adicinar chave aqui
 
