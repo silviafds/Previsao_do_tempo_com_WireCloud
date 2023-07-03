@@ -20,7 +20,7 @@
        <div class="pesquisa">
             <form method="post" th:action="@{/previsao-tempo/cidade}">
                 <div class="formLogin" >
-                    <input type="text" th:name="cidade" class="buscarLugar" placeholder="Digite o nome de um lugar">
+                    <input type="text" required th:name="cidade" class="buscarLugar" placeholder="Digite o nome de um lugar">
                     <button type="submit" value="Input Button" class="botaoEntrar">Buscar</button>
                 </div>
             </form>
