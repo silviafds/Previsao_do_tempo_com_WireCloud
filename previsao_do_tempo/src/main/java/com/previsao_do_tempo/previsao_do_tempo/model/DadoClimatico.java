@@ -12,14 +12,14 @@ public class DadoClimatico {
     private double sensacaoTermica;
     private int umidade;
     private double vento;
-    private double pressao;
+    private int pressao;
     private double longitude;
     private double latitude;
 
     public DadoClimatico() {
     }
 
-    public DadoClimatico(String nomeCidade, String siglaPais, String status, String descricaoStatus, double temperatura, double temperaturaMin, double temperaturaMax, double sensacaoTermica, int umidade, double vento, double pressao, double longitude, double latitude) {
+    public DadoClimatico(String nomeCidade, String siglaPais, String status, String descricaoStatus, double temperatura, double temperaturaMin, double temperaturaMax, double sensacaoTermica, int umidade, double vento, int pressao, double longitude, double latitude) {
         this.nomeCidade = nomeCidade;
         this.siglaPais = siglaPais;
         this.status = status;
@@ -115,11 +115,11 @@ public class DadoClimatico {
         this.vento = vento;
     }
 
-    public double getPressao() {
+    public int getPressao() {
         return pressao;
     }
 
-    public void setPressao(double pressao) {
+    public void setPressao(int pressao) {
         this.pressao = pressao;
     }
 

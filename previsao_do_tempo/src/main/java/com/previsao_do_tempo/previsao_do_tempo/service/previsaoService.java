@@ -3,7 +3,6 @@ package com.previsao_do_tempo.previsao_do_tempo.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.previsao_do_tempo.previsao_do_tempo.model.DadoClimatico;
-import org.apache.commons.text.CaseUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +11,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+import org.apache.commons.text.WordUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +20,7 @@ public class previsaoService {
     public String apiKey = "80e0070b689cbee079cb225a96f68b9a";//adicinar chave aqui
 
     public DadoClimatico dadosCidade(String city) {
-        return acessaAPI(CaseUtils.toCamelCase(city, true, ' '));
+        return acessaAPI(WordUtils.capitalize(city));
     }
 
     /*
@@ -64,17 +64,17 @@ public class previsaoService {
             String country = sysNode.get("country").asText();
             // Extrair valores de main
             JsonNode mainNode = rootNode.get("main");
-            int temp = mainNode.get("temp").asInt();
-            int feelsLike = mainNode.get("feels_like").asInt();
-            int tempMin = mainNode.get("temp_min").asInt();
-            int tempMax = mainNode.get("temp_max").asInt();
+            double temp = mainNode.get("temp").asDouble();
+            double feelsLike = mainNode.get("feels_like").asDouble();
+            double tempMin = mainNode.get("temp_min").asDouble();
+            double tempMax = mainNode.get("temp_max").asDouble();
             int pressure = mainNode.get("pressure").asInt();
             int humidity = mainNode.get("humidity").asInt();
             // Extrair valores de vento
             JsonNode ventoNode = rootNode.get("wind");
-            int speed = ventoNode.get("speed").asInt();
+            double speed = ventoNode.get("speed").asDouble();
 
-            dadoClimatico = new DadoClimatico(lugar, country, main, CaseUtils.toCamelCase(description, true, ' '),
+            dadoClimatico = new DadoClimatico(lugar, country, main, WordUtils.capitalize(description),
                     temp, tempMin, tempMax, feelsLike, humidity, speed, pressure, lon, lat);
 
             System.out.println(dadoClimatico);

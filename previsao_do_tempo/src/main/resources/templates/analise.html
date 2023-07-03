@@ -20,9 +20,7 @@
        <div class="pesquisa">
             <form method="post" th:action="@{/previsao-tempo/cidade}">
                 <div class="formLogin" >
-                    <label>
-                        <input type="text" th:name="cidade" class="buscarLugar" placeholder="Digite o nome de um lugar">
-                    </label>
+                    <input type="text" th:name="cidade" class="buscarLugar" placeholder="Digite o nome de um lugar">
                     <button type="submit" value="Input Button" class="botaoEntrar">Buscar</button>
                 </div>
             </form>
@@ -48,7 +46,7 @@
                     </p>
                 </div>
                 <div class="paragrafoLugarTemperatura">
-                    <p class="paragrafo" th:text="*{status}"></p></div>
+                    <p class="paragrafo" th:text="*{descricaoStatus}"></p></div>
             </div>
 
             <div class="dadoLugarOutrastemperaturas">
@@ -63,13 +61,6 @@
                     <img th:src="@{/css/simbolo.png}"></p>
             </div>
 
-            <div class="dadoLugarDescricao">
-                <p class="paragrafo">
-                    <img th:src="@{/css/status24.png}">
-                    <span th:text="'Status atual: ' + *{descricaoStatus}"></span>
-                </p>
-            </div>
-
             <div class="dadoLugarOutrastemperaturas">
                 <p class="paragrafoOutrastemperaturas">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
@@ -81,20 +72,20 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
                         <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
                     </svg>
-                    <span th:text="'Vento: ' + *{vento} + 'Km/h'"></span>
+                    <span th:text="'Vento: ' + *{vento} + ' Km/h'"></span>
                 </p>
                 <p class="paragrafoOutrastemperaturas">
                     <img th:src="@{/css/pressure24.png}" alt="pressão">
-                    <span th:text="'Pressão: ' + *{pressao} + 'm'"></span>
+                    <span th:text="'Pressão: ' + *{pressao} + ' m'"></span>
                 </p>
             </div>
 
             <div class="dadoLugarLatitude">
                 <p class="paragrafodadoLugarLatitude"> <img th:src="@{/css/latitude24.png}">
-                    <span th:text="'Longitude: ' + *{latitude}"></span>
+                    <span th:text="'Latitude: ' + *{latitude}"></span>
                 </p>
                 <p class="paragrafodadoLugarLatitude"> <img th:src="@{/css/longitude24.png}">
-                    <span th:text="'Latitude: ' + *{longitude}"></span>
+                    <span th:text="'Longitude: ' + *{longitude}"></span>
                 </p>
             </div>
 
