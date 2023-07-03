@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 600px;
-    height: 250px;
+    height: 350px;
     background-color: #cbd5da;
     border-radius: 2em 2em 2em 2em;
     border: 1px solid #6b9ac5;
@@ -68,6 +68,7 @@ body {
     justify-content: center;
     align-items: center;
     padding-top: 1em;
+    padding-bottom: 30px;
 }
 
 .botaoEntrar {
@@ -86,4 +87,39 @@ body {
 
 .botaoEntrar:hover {
     background-color: #3b85c7;
+}
+
+.notificacao {
+    margin-left: 30px;
+}
+
+#mostrarInput {
+    margin-left: 10px;
+}
+
+#meuInput {
+    margin-left: 30px;
+    text-align: center;
+    background-color: #d3d6da;
+    border-radius: 0.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    width: 140px;
+    height: 16px;
+    font-size: 12px;
+    border: 0.4px solid #494949;
+}
+
+#enviar {
+    background-color: #6b9ac5;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+    border: 0.3px solid #494949;
+    border-radius: 0.8em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }

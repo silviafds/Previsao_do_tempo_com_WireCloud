@@ -28,6 +28,45 @@
                     <button type="submit" value="Input Button" class="botaoEntrar">Buscar</button>
                 </div>
             </form>
+
+
+
+
+            <!--NOTIFICAÇÕES-->
+            <label>
+                <input type="checkbox" id="mostrarInput"> Deseja receber notificações?
+            </label>
+            
+            <br>
+            
+            <div id="inputContainer" style="display: none;">
+            <input type="text" id="meuInput" placeholder="Digite nome do lugar">
+            <button id="enviar">Enviar</button>
+            </div>
+
+
+        
+            <script>
+            var checkbox = document.getElementById('mostrarInput');
+            var inputContainer = document.getElementById('inputContainer');
+            var enviarButton = document.getElementById('enviar');
+        
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                inputContainer.style.display = 'block';
+                } else {
+                inputContainer.style.display = 'none';
+                }
+            });
+        
+            enviarButton.addEventListener('click', function() {
+                var inputValue = document.getElementById('meuInput').value;
+                alert('Valor inserido: ' + inputValue);
+            });
+            </script>
+
+
+
         </div>
     </div>
 
