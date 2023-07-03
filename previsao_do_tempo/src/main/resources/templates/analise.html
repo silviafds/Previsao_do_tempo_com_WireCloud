@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="./css/styleAnalise.css">
+    <title>Previsão do Tempo</title>
+    <link rel="stylesheet" th:href="@{/css/styleAnalise.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
@@ -18,49 +18,84 @@
     <div class="fundo"> <!-- div principal-->
 
        <div class="pesquisa">
-            <form>
+            <form method="post" th:action="@{/previsao-tempo/cidade}">
                 <div class="formLogin" >
-                    <input type="text" name="buscarLugar" class="buscarLugar" placeholder="Digite o nome de um lugar">
-                    <a href="#"><button type="button" value="Input Button" class="botaoEntrar">Buscar</button></a>
+                    <label>
+                        <input type="text" th:name="cidade" class="buscarLugar" placeholder="Digite o nome de um lugar">
+                    </label>
+                    <button type="submit" value="Input Button" class="botaoEntrar">Buscar</button>
                 </div>
             </form>
        </div>
 
-        <div class="box">
+        <div class="box" th:object="${dadoClimatico}">
 
             <div class="dadoLugarPais">
-                <div class="paragrafoLugarPais"><p>  <img src="css/localizacao24.png"> Natal/ </p></div>
-                <div class="paragrafoLugarPais"><p>BR</p></div>
+                <div class="paragrafoLugarPais">
+                    <p><img th:src="@{/css/localizacao24.png}">
+                        <span th:text="*{nomeCidade + '/'}"></span>
+                    </p></div>
+                <div class="paragrafoLugarPais">
+                    <p th:text="*{siglaPais}"></p>
+                </div>
             </div>
 
             <div class="dadoLugarTemperatura">
-                <div class="paragrafoLugarTemperatura"><p >27<img src="css/simbolo24.png"></p></div>
-                <div class="paragrafoLugarTemperatura"><p class="paragrafo">Chuva</p></div>
+                <div class="paragrafoLugarTemperatura">
+                    <p>
+                        <span th:text="*{temperatura}"></span>
+                        <img th:src="@{/css/simbolo24.png}">
+                    </p>
+                </div>
+                <div class="paragrafoLugarTemperatura">
+                    <p class="paragrafo" th:text="*{status}"></p></div>
             </div>
 
             <div class="dadoLugarOutrastemperaturas">
-                <p class="paragrafoLugarOutrastemperaturas">min: 26<img src="css/simbolo.png"></p>
-                <p class="paragrafoLugarOutrastemperaturas">max: 30<img src="css/simbolo.png"></p>
-                <p class="paragrafoLugarOutrastemperaturas">sensação termica: 32<img src="css/simbolo.png"></p>
+                <p class="paragrafoLugarOutrastemperaturas">
+                    <span th:text="'Min: ' + *{temperaturaMin}"></span>
+                    <img th:src="@{/css/simbolo.png}"></p>
+                <p class="paragrafoLugarOutrastemperaturas">
+                    <span th:text="'Max: ' + *{temperaturaMax}"></span>
+                    <img th:src="@{/css/simbolo.png}"></p>
+                <p class="paragrafoLugarOutrastemperaturas">
+                    <span th:text="'Sensação Térmica: ' + *{sensacaoTermica}"></span>
+                    <img th:src="@{/css/simbolo.png}"></p>
             </div>
 
             <div class="dadoLugarDescricao">
-                <p class="paragrafo"><img src="css/status24.png"> Status atual: chuva forte</p>
+                <p class="paragrafo">
+                    <img th:src="@{/css/status24.png}">
+                    <span th:text="'Status atual: ' + *{descricaoStatus}"></span>
+                </p>
             </div>
 
             <div class="dadoLugarOutrastemperaturas">
-                <p class="paragrafoOutrastemperaturas"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
-                    <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z"/>
-                </svg>Umidade: 26%</p>
-                <p class="paragrafoOutrastemperaturas"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
-                    <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
-                </svg>Vento: 30Km/h </p>
-                <p class="paragrafoOutrastemperaturas"><img src="./css/pressure24.png" alt="pressão">Pressão: 2666m </p>
+                <p class="paragrafoOutrastemperaturas">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
+                        <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5h-2zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a28.458 28.458 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a28.458 28.458 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001L7 1.5zm0 0-.364-.343L7 1.5zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267z"/>
+                    </svg>
+                    <span th:text="'Umidade: ' + *{umidade} + '%'"></span>
+                </p>
+                <p class="paragrafoOutrastemperaturas">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                        <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                    <span th:text="'Vento: ' + *{vento} + 'Km/h'"></span>
+                </p>
+                <p class="paragrafoOutrastemperaturas">
+                    <img th:src="@{/css/pressure24.png}" alt="pressão">
+                    <span th:text="'Pressão: ' + *{pressao} + 'm'"></span>
+                </p>
             </div>
 
-            <div class="dadoLugarLantitude">
-                <p class="paragrafodadoLugarLantitude"> <img src="css/longitude24.png"> longitude: -35,2</p>
-                <p class="paragrafodadoLugarLantitude"> <img src="css/latitude24.png"> latitude: 25,2</p>
+            <div class="dadoLugarLatitude">
+                <p class="paragrafodadoLugarLatitude"> <img th:src="@{/css/latitude24.png}">
+                    <span th:text="'Longitude: ' + *{latitude}"></span>
+                </p>
+                <p class="paragrafodadoLugarLatitude"> <img th:src="@{/css/longitude24.png}">
+                    <span th:text="'Latitude: ' + *{longitude}"></span>
+                </p>
             </div>
 
         </div>

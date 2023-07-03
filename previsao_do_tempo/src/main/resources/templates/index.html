@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+    <title>Previsão do Tempo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="shortcut icon" th:href="@{/favicon/favicon.ico}" type="image/x-icon">
 </head>
 
 <body>
@@ -16,16 +16,18 @@
         <div class="box"> <!-- guarda formulário-->
 
             <div class="Titulo"> <!-- nome login-->
-                <h2>Previsão do tempo</h2>
+                <h2>Previsão do Tempo</h2>
             </div>
 
-            <form> <!-- formulario-->
+            <form method="post" th:action="@{/previsao-tempo/cidade}"> <!-- formulario-->
                 <div class="formLogin">
-                    <input type="text" name="buscarLugar" class="buscarLugar" placeholder="Digite o nome de um lugar">
+                    <label>
+                        <input th:name="cidade" type="text" name="buscarLugar" class="buscarLugar" placeholder="Digite o nome de um lugar">
+                    </label>
                 </div>
 
                 <div class="botao">
-                    <a href="analise.html"><button type="button" value="Input Button" class="botaoEntrar">Buscar</button></a>
+                    <button type="submit" value="Input Button" class="botaoEntrar">Buscar</button>
                 </div>
             </form>
         </div>

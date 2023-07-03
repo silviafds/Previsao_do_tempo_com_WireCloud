@@ -2,17 +2,15 @@ package com.previsao_do_tempo.previsao_do_tempo.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.previsao_do_tempo.previsao_do_tempo.model.DadoClimatico;
+import org.apache.commons.text.CaseUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 
 import org.springframework.stereotype.Service;
 
@@ -21,33 +19,17 @@ public class previsaoService {
 
     public String apiKey = "80e0070b689cbee079cb225a96f68b9a";//adicinar chave aqui
 
-    public List<Object> dadosCidade(String city) throws JSONException {
-        List<Object> dadosLugares;
-        String lugar = converteString(city);
-        dadosLugares = acessaAPI(lugar);
-        return dadosLugares;
-    }
-
-    /*
-    *  converte JSON para String
-    */
-    public String converteString(String city) throws JSONException {
-        String cidade;
-        if (city!=null) {
-            JSONObject jsonObject = new JSONObject(city);
-            cidade = jsonObject.getString("cidade");
-            return cidade;
-        }
-        return "Lugar inválido";
+    public DadoClimatico dadosCidade(String city) {
+        return acessaAPI(CaseUtils.toCamelCase(city, true, ' '));
     }
 
     /*
      *  Acessa API e retorna list com os dados necessários de previsão do tempo
      */
-    private List<Object> acessaAPI(String lugar) {
+    private DadoClimatico acessaAPI(String lugar) {
         String linha;
 
-        List<Object> valores = null;
+        DadoClimatico dadoClimatico = null;
         try {
             // Criar uma URL
             URL url = new URL("https://api.openweathermap.org/data/2.5/weather?q=" + lugar + "&units=metric&appid=" + apiKey + "&lang=pt_br");
@@ -56,7 +38,7 @@ public class previsaoService {
             URLConnection connection = url.openConnection();
 
             // Criar um BufferedReader para ler a resposta
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
 
             StringBuilder response = new StringBuilder();
 
@@ -82,56 +64,26 @@ public class previsaoService {
             String country = sysNode.get("country").asText();
             // Extrair valores de main
             JsonNode mainNode = rootNode.get("main");
-            double temp = mainNode.get("temp").asDouble();
-            double feelsLike = mainNode.get("feels_like").asDouble();
-            double tempMin = mainNode.get("temp_min").asDouble();
-            double tempMax = mainNode.get("temp_max").asDouble();
+            int temp = mainNode.get("temp").asInt();
+            int feelsLike = mainNode.get("feels_like").asInt();
+            int tempMin = mainNode.get("temp_min").asInt();
+            int tempMax = mainNode.get("temp_max").asInt();
             int pressure = mainNode.get("pressure").asInt();
             int humidity = mainNode.get("humidity").asInt();
             // Extrair valores de vento
             JsonNode ventoNode = rootNode.get("wind");
-            double speed = ventoNode.get("speed").asDouble();
+            int speed = ventoNode.get("speed").asInt();
 
-            valores = new ArrayList<>();
-            valores.add(lugar); //lugar
-            valores.add(country); //país
-            valores.add(arredondarEConverterParaInteiro(temp)); //temperatura atual
-            valores.add(main); // status atual: chuva, sol, nuvens
-            valores.add(arredondarEConverterParaInteiro(feelsLike)); // sensação termica
-            valores.add(arredondarEConverterParaInteiro(tempMin)); //temperatura minima
-            valores.add(arredondarEConverterParaInteiro(tempMax)); //temperatura maxima
-            valores.add(description); //description
-            valores.add(arredondarEConverterParaInteiro(humidity)); //umidade
-            valores.add(arredondarEConverterParaInteiro(speed)); //velociade vento
-            valores.add(pressure); // pressao
-            valores.add(lon); //longitude
-            valores.add(lat); //latitude
+            dadoClimatico = new DadoClimatico(lugar, country, main, CaseUtils.toCamelCase(description, true, ' '),
+                    temp, tempMin, tempMax, feelsLike, humidity, speed, pressure, lon, lat);
 
-
-            for (Object valor : valores) {
-                System.out.println(valor);
-            }
+            System.out.println(dadoClimatico);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return valores;
+        return dadoClimatico;
     }
-
-
-    /*
-     *  Função que arredonda e converte para inteiro
-     */
-    public static int arredondarEConverterParaInteiro(double numero) {
-        long numeroArredondado = Math.round(numero);
-        int numeroInteiro = Math.toIntExact(numeroArredondado);
-
-        return numeroInteiro;
-    }
-
-
-
-
 
 }

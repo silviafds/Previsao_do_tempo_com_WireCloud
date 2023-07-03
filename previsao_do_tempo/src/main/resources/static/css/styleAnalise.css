@@ -77,7 +77,7 @@ body {
 }
 
 .dadoLugarPais, .dadoLugarTemperatura, dadoLugarOutrastemperaturas,
-.dadoLugarDescricao, .dadoLugarOutrastemperaturas, .dadoLugarLantitude{
+.dadoLugarDescricao, .dadoLugarOutrastemperaturas, .dadoLugarLatitude{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -94,7 +94,7 @@ dadoLugarOutrastemperaturas,
     padding-top: 10px;
 }
 
-.dadoLugarLantitude {
+.dadoLugarLatitude {
     padding-top: 20px;
 }
 
@@ -134,11 +134,11 @@ dadoLugarOutrastemperaturas,
     margin-left: 10px;
 }
 
-.paragrafodadoLugarLantitude:first-child {
+.paragrafodadoLugarLatitude:first-child {
     margin-right: 10px;
 }
 
-paragrafodadoLugarLantitude:not(:first-child) {
+paragrafodadoLugarLatitude:not(:first-child) {
     margin-left: 10px;
 }
 
